@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>You're Invited 💚</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #ffd6e8 0, #ffe6f0 35%, #7a8450 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", serif;
+    overflow: hidden;
+  }
+
+  /* floating hearts decorations */
+  .page-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-hearts span {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.9;
+    animation: floatHeart 22s linear infinite;
+  }
+
+  .page-hearts span:nth-child(1) { left: 8%; top: 80%; animation-duration: 18s; }
+  .page-hearts span:nth-child(2) { left: 20%; top: 90%; animation-duration: 26s; }
+  .page-hearts span:nth-child(3) { left: 38%; top: 85%; animation-duration: 21s; }
+  .page-hearts span:nth-child(4) { left: 60%; top: 88%; animation-duration: 24s; }
+  .page-hearts span:nth-child(5) { left: 78%; top: 82%; animation-duration: 19s; }
+  .page-hearts span:nth-child(6) { left: 90%; top: 92%; animation-duration: 28s; }
+
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  .coupon-container {
+    position: relative;
+    z-index: 1;
+    width: 90%;
+    max-width: 600px;
+    background: linear-gradient(135deg, #fff0f6 0%, #ffe6f0 100%);
+    border: 3px solid #c9184a;
+    border-radius: 24px;
+    padding: 50px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.8s ease-out;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .coupon-header {
+    font-size: 48px;
+    color: #c9184a;
+    margin: 0 0 20px 0;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+
+  .coupon-subtitle {
+    font-size: 24px;
+    color: #c9184a;
+    margin-bottom: 40px;
+    font-style: italic;
+  }
+
+  .coupon-divider {
+    height: 2px;
+    background: linear-gradient(to right, transparent, #c9184a, transparent);
+    margin: 30px 0;
+  }
+
+  .invitation-text {
+    font-size: 22px;
+    color: #c9184a;
+    margin-bottom: 30px;
+    font-weight: bold;
+  }
+
+  .details {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 30px 0;
+  }
+
+  .detail-item {
+    margin: 20px 0;
+  }
+
+  .detail-label {
+    font-size: 14px;
+    color: #7a8450;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .detail-value {
+    font-size: 24px;
+    color: #c9184a;
+    font-weight: bold;
+  }
+
+  .heart-decoration {
+    font-size: 32px;
+    margin: 20px 0;
+  }
+
+  .button-group {
+    margin-top: 40px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  button {
+    padding: 15px 40px;
+    font-size: 16px;
+    border: 2px solid #c9184a;
+    background: #c9184a;
+    color: #fff0f6;
+    cursor: pointer;
+    border-radius: 12px;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background: #a01541;
+    border-color: #a01541;
+    transform: scale(1.05);
+  }
+
+  button.secondary {
+    background: transparent;
+    color: #c9184a;
+  }
+
+  button.secondary:hover {
+    background: #ffe6f0;
+  }
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px;
+    }
+
+    .coupon-container {
+      padding: 40px 25px;
+    }
+
+    .coupon-header {
+      font-size: 36px;
+    }
+
+    .coupon-subtitle {
+      font-size: 18px;
+    }
+
+    .invitation-text {
+      font-size: 18px;
+    }
+
+    .detail-label {
+      font-size: 12px;
+    }
+
+    .detail-value {
+      font-size: 20px;
+    }
+
+    .heart-decoration {
+      font-size: 28px;
+    }
+
+    button {
+      padding: 12px 30px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 15px;
+    }
+
+    .coupon-container {
+      padding: 30px 20px;
+      border: 2px solid #c9184a;
+    }
+
+    .coupon-header {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .coupon-subtitle {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .coupon-divider {
+      margin: 20px 0;
+    }
+
+    .invitation-text {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .details {
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .detail-item {
+      margin: 15px 0;
+    }
+
+    .detail-label {
+      font-size: 11px;
+    }
+
+    .detail-value {
+      font-size: 18px;
+    }
+
+    .button-group {
+      gap: 10px;
+      margin-top: 25px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+
+    p {
+      font-size: 13px;
+      margin: 15px 0;
+    }
+  }
+
+  /* TABLET LANDSCAPE */
+  @media (max-width: 1024px) and (orientation: landscape) {
+    body {
+      padding: 15px;
+    }
+
+    .coupon-container {
+      padding: 35px 30px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .coupon-header {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .detail-value {
+      font-size: 22px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 14px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page-hearts">
+  <span>💗</span>
+  <span>💘</span>
+  <span>💖</span>
+  <span>💝</span>
+  <span>💗</span>
+  <span>💘</span>
+</div>
+
+<div class="coupon-container">
+  <div class="coupon-header">💚 YOU'RE INVITED 💚</div>
+  <div class="coupon-subtitle">Join me for a special evening</div>
+
+  <div class="coupon-divider"></div>
+
+  <div class="invitation-text">Join me on a Saturday night</div>
+
+  <div class="details">
+    <div class="detail-item">
+      <div class="detail-label">⏰ Time</div>
+      <div class="detail-value">17:30</div>
+    </div>
+
+    <div class="detail-item">
+      <div class="detail-label">📍 Location</div>
+      <div class="detail-value">Pražakova ulica 18</div>
+    </div>
+  </div>
+
+  <div class="heart-decoration">💚 💘 💖</div>
+
+  <div class="coupon-divider"></div>
+
+  <p style="font-size: 18px; color: #7a8450; margin: 30px 0;">
+    You found all my hearts, now let's make new memories together...
+  </p>
+
+  <div class="button-group">
+    <button onclick="window.location.href='love.html'">Play Again</button>
+    <button class="secondary" onclick="window.location.href='index.html'">Go Back</button>
+  </div>
+</div>
+
+</body>
+</html>

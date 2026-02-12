@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Yes 💚</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #ffd6e8 0, #ffe6f0 35%, #7a8450 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", serif;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .box {
+    width: 45%;
+    background: #fff0f6;
+    padding: 25px;
+    border: 2px solid #c9184a;
+    text-align: center;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+  }
+
+  h2 {
+    color: #c9184a;
+    margin-bottom: 15px;
+  }
+
+  /* TIMELINE */
+  .timeline-photo {
+    width: 100%;
+    height: 280px;
+    background: url("JPG IMAGES/timeline-photo.jpg") center / cover no-repeat;
+    border-radius: 16px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+
+  .timeline-photo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  /* GAME GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+  }
+
+  .tile {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  }
+
+  /* BACK COVER (what you see first) */
+  .cover {
+    position: absolute;
+    inset: 0;
+    background: #7a8450;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32px;
+    color: #b7ffb7;
+    transition: opacity 0.25s ease;
+  }
+
+  /* PHOTO UNDER THE COVER */
+  .tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  /* When revealed or matched: show photo, hide cover */
+  .tile.revealed .cover,
+  .tile.matched .cover {
+    opacity: 0;
+  }
+
+  .tile.revealed img,
+  .tile.matched img {
+    opacity: 1;
+  }
+
+  /* floating hearts decorations */
+  .page-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-hearts span {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.9;
+    animation: floatHeart 22s linear infinite;
+  }
+
+  .page-hearts span:nth-child(1) { left: 8%; top: 80%; animation-duration: 18s; }
+  .page-hearts span:nth-child(2) { left: 20%; top: 90%; animation-duration: 26s; }
+  .page-hearts span:nth-child(3) { left: 38%; top: 85%; animation-duration: 21s; }
+  .page-hearts span:nth-child(4) { left: 60%; top: 88%; animation-duration: 24s; }
+  .page-hearts span:nth-child(5) { left: 78%; top: 82%; animation-duration: 19s; }
+  .page-hearts span:nth-child(6) { left: 90%; top: 92%; animation-duration: 28s; }
+
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    20% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-110vh) scale(1.3);
+      opacity: 0;
+    }
+  }
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    body {
+      height: auto;
+      min-height: 100vh;
+      padding: 20px 0;
+    }
+
+    .container {
+      flex-direction: column;
+      width: 95%;
+      max-width: 100%;
+      gap: 20px;
+    }
+
+    .box {
+      width: 100%;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .timeline-photo {
+      height: 200px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    .cover {
+      font-size: 24px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .box {
+      padding: 15px;
+    }
+
+    h2 {
+      font-size: 20px;
+    }
+
+    .timeline-photo {
+      height: 150px;
+    }
+
+    .grid {
+      gap: 6px;
+    }
+
+    .cover {
+      font-size: 20px;
+    }
+  }
+
+  /* TABLET LANDSCAPE */
+  @media (max-width: 1024px) and (orientation: landscape) {
+    .container {
+      gap: 15px;
+    }
+
+    .box {
+      width: 48%;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 22px;
+    }
+
+    .timeline-photo {
+      height: 180px;
+    }
+
+    .grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .cover {
+      font-size: 22px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page-hearts">
+  <span>💗</span>
+  <span>💘</span>
+  <span>💖</span>
+  <span>💝</span>
+  <span>💗</span>
+  <span>💘</span>
+</div>
+
+<div class="container">
+
+  <!-- TIMELINE -->
+  <div class="box">
+    <h2>Our Timeline</h2>
+    <div class="timeline-photo" style="background-image: url('images/T0.jpg'); cursor: pointer;" onclick="window.location.href='timeline.html'"></div>
+  </div>
+
+  <!-- GAME -->
+  <div class="box">
+    <h2>Find our memories</h2>
+
+    <div class="grid" id="grid">
+      <!-- tiles injected by JS -->
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const basePhotos = [
+    "JPG IMAGES/us1.jpg",
+    "JPG IMAGES/us2.jpg",
+    "JPG IMAGES/us3.jpg",
+    "JPG IMAGES/us4.jpg",
+    "JPG IMAGES/us5.jpg",
+    "JPG IMAGES/us6.jpg"
+  ];
+
+  // duplicate for pairs (memory game)
+  const photos = [...basePhotos, ...basePhotos];
+
+  // simple shuffle
+  for (let i = photos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [photos[i], photos[j]] = [photos[j], photos[i]];
+  }
+
+  const grid = document.getElementById("grid");
+
+  let firstTile = null;
+  let lockBoard = false;
+  let matchedPairs = 0;
+
+  photos.forEach((photo) => {
+    const tile = document.createElement("div");
+    tile.classList.add("tile");
+    tile.dataset.photo = photo;
+
+    tile.innerHTML = `
+      <div class="cover">💚</div>
+      <img src="${photo}">
+    `;
+
+    tile.addEventListener("click", () => {
+      if (lockBoard || tile.classList.contains("matched") || tile === firstTile) return;
+
+      tile.classList.add("revealed");
+
+      if (!firstTile) {
+        firstTile = tile;
+        return;
+      }
+
+      // second tile clicked
+      lockBoard = true;
+      const isMatch = firstTile.dataset.photo === tile.dataset.photo;
+
+      if (isMatch) {
+        firstTile.classList.add("matched");
+        tile.classList.add("matched");
+        matchedPairs++;
+
+        setTimeout(() => {
+          firstTile.classList.remove("revealed");
+          tile.classList.remove("revealed");
+          firstTile = null;
+          lockBoard = false;
+
+          if (matchedPairs === basePhotos.length) {
+            // Redirect to coupon page after a short delay
+            setTimeout(() => {
+              window.location.href = 'coupon.html';
+            }, 500);
+          }
+        }, 400);
+      } else {
+        setTimeout(() => {
+          firstTile.classList.remove("revealed");
+          tile.classList.remove("revealed");
+          firstTile = null;
+          lockBoard = false;
+        }, 700);
+      }
+    });
+
+    grid.appendChild(tile);
+  });
+</script>
+
+</body>
+</html>

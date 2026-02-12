@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Our Timeline 💚</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+  body {
+    margin: 0;
+    padding: 40px 20px;
+    background: radial-gradient(circle at top, #d43a5c 0, #8b1a3a 35%, #4a0e1f 100%);
+    font-family: "Times New Roman", serif;
+    min-height: 100vh;
+  }
+
+  .timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .timeline-title {
+    text-align: center;
+    font-size: 48px;
+    color: #2ecc71;
+    margin-bottom: 60px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-family: 'Great Vibes', cursive;
+    font-weight: normal;
+  }
+
+  /* CENTRAL TIMELINE TRACK */
+  .timeline-track {
+    position: relative;
+    margin: 80px 0;
+  }
+
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, transparent, #c9184a, transparent);
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  /* TIMELINE EVENTS */
+  .timeline-event {
+    display: flex;
+    margin-bottom: 80px;
+    position: relative;
+  }
+
+  /* EVEN ITEMS (LEFT SIDE - TOP) */
+  .timeline-event:nth-child(odd) {
+    flex-direction: row;
+  }
+
+  .timeline-event:nth-child(odd) .event-content {
+    width: 48%;
+  }
+
+  .timeline-event:nth-child(odd) .event-dot {
+    width: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .timeline-event:nth-child(odd) .event-spacer {
+    width: 48%;
+  }
+
+  /* ODD ITEMS (RIGHT SIDE - BOTTOM) */
+  .timeline-event:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  .timeline-event:nth-child(even) .event-content {
+    width: 48%;
+  }
+
+  .timeline-event:nth-child(even) .event-dot {
+    width: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .timeline-event:nth-child(even) .event-spacer {
+    width: 48%;
+  }
+
+  .event-dot {
+    position: relative;
+    z-index: 2;
+  }
+
+  .event-dot::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: #c9184a;
+    border: 4px solid #fff0f6;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #c9184a;
+  }
+
+  .event-content {
+    background: #fff0f6;
+    border: 2px solid #c9184a;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .event-content:hover {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  }
+
+  .event-content:active {
+    transform: translateY(-2px);
+  }
+
+  .event-photo {
+    width: 100%;
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s ease;
+  }
+
+  .event-content:hover .event-photo {
+    transform: scale(1.05);
+  }
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .event-description {
+    text-align: center;
+  }
+
+  .event-time {
+    font-size: 16px;
+    color: #7a8450;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+
+  .event-place {
+    font-size: 20px;
+    color: #c9184a;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .event-text {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .back-button {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 15px 40px;
+    background: #c9184a;
+    color: #fff0f6;
+    border: 2px solid #c9184a;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: "Times New Roman", serif;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .back-button:hover {
+    background: #a01541;
+    border-color: #a01541;
+    transform: scale(1.05);
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  /* Floating hearts */
+  .page-hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page-hearts span {
+    position: absolute;
+    font-size: 28px;
+    opacity: 0.7;
+    animation: floatHeart 22s linear infinite;
+  }
+
+  .page-hearts span:nth-child(1) { left: 5%; top: 10%; animation-duration: 18s; }
+  .page-hearts span:nth-child(2) { left: 15%; bottom: 15%; animation-duration: 26s; }
+  .page-hearts span:nth-child(3) { left: 50%; top: 5%; animation-duration: 21s; }
+  .page-hearts span:nth-child(4) { right: 15%; top: 20%; animation-duration: 24s; }
+  .page-hearts span:nth-child(5) { right: 5%; bottom: 20%; animation-duration: 19s; }
+
+  @keyframes floatHeart {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.7;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1.3);
+      opacity: 0;
+    }
+  }
+
+  .content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    body {
+      padding: 20px 10px;
+    }
+
+    .timeline-container {
+      max-width: 100%;
+    }
+
+    .timeline-title {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    .timeline-track {
+      margin: 40px 0;
+    }
+
+    .timeline-event {
+      margin-bottom: 50px;
+    }
+
+    .event-content {
+      width: 100% !important;
+    }
+
+    .event-spacer {
+      width: 0 !important;
+    }
+
+    .event-dot {
+      width: 0 !important;
+      display: none !important;
+    }
+
+    .timeline-track::before {
+      left: 0;
+      right: auto;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      height: 100%;
+      transform: none;
+    }
+
+    .event-photo {
+      height: 150px;
+    }
+
+    .modal-content {
+      max-width: 100%;
+      padding: 30px 20px;
+    }
+
+    .modal-photo {
+      height: 250px;
+    }
+
+    .event-description {
+      text-align: center;
+    }
+
+    .event-time {
+      font-size: 14px;
+    }
+
+    .event-place {
+      font-size: 18px;
+    }
+
+    .event-text {
+      font-size: 13px;
+    }
+
+    .back-button {
+      padding: 12px 30px;
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    body {
+      padding: 15px 10px;
+    }
+
+    .timeline-title {
+      font-size: 28px;
+      margin-bottom: 30px;
+    }
+
+    .timeline-track {
+      margin: 30px 0;
+    }
+
+    .timeline-event {
+      margin-bottom: 40px;
+    }
+
+    .event-content {
+      padding: 15px;
+      border-radius: 12px;
+    }
+
+    .event-photo {
+      height: 120px;
+      margin-bottom: 12px;
+    }
+
+    .event-time {
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .event-place {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    .event-text {
+      font-size: 12px;
+    }
+
+    .modal {
+      padding: 20px;
+    }
+
+    .modal-content {
+      max-width: 100%;
+      max-height: 90vh;
+      padding: 20px 15px;
+    }
+
+    .modal-close {
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+    }
+
+    .modal-photo {
+      height: 200px;
+      margin-bottom: 15px;
+    }
+
+    .modal-place {
+      font-size: 20px;
+    }
+
+    .modal-text {
+      font-size: 14px;
+    }
+
+    .back-button {
+      padding: 10px 20px;
+      font-size: 13px;
+      margin-top: 30px;
+    }
+  }
+
+  /* MODAL STYLES */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .modal-content {
+    background: #fff0f6;
+    border: 3px solid #c9184a;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 32px;
+    cursor: pointer;
+    color: #c9184a;
+    font-weight: bold;
+    border: none;
+    background: none;
+    transition: transform 0.2s ease;
+  }
+
+  .modal-close:hover {
+    transform: scale(1.2);
+  }
+
+  .modal-photo {
+    width: 100%;
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .modal-description {
+    text-align: center;
+  }
+
+  .modal-time {
+    font-size: 16px;
+    color: #7a8450;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .modal-place {
+    font-size: 26px;
+    color: #c9184a;
+    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  .modal-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* TABLET LANDSCAPE */
+  @media (max-width: 1024px) and (orientation: landscape) {
+    body {
+      padding: 15px;
+    }
+
+    .timeline-title {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    .timeline-track {
+      margin: 30px 0;
+    }
+
+    .event-photo {
+      height: 140px;
+    }
+
+    .event-place {
+      font-size: 18px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="page-hearts">
+  <span>💗</span>
+  <span>💘</span>
+  <span>💖</span>
+  <span>💝</span>
+  <span>💚</span>
+</div>
+
+<div class="content-wrapper">
+  <div class="timeline-container">
+    <div class="timeline-title">Our Special Timeline 💚</div>
+
+    <div class="timeline-track">
+      <!-- EVENT 1 - LEFT/TOP -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T1.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 09.08.25</div>
+            <div class="event-place">IČIĆI, ŠKUJERA</div>
+            <div class="event-text">Bejba z najlepšimi ustncami in nohti kadi baso</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 2 - RIGHT/BOTTOM -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T2.JPG')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 10.80.25</div>
+            <div class="event-place">IČIĆI, ŠKUJERA</div>
+            <div class="event-text">Bejba z najlepšim nasmehom</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 3 - LEFT/TOP -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T3.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 09.10.25</div>
+            <div class="event-place">Pr Loli doma</div>
+            <div class="event-text">Najlepša bejba in njen tudi lep kuža</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 4 - RIGHT/BOTTOM -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T4.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 08.10.25</div>
+            <div class="event-place">Pražakova</div>
+            <div class="event-text">2 Najlepše stvari na svetu (and no yr not an object)</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 5 - LEFT/TOP -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T5.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 mal kasnej</div>
+            <div class="event-place">isto k prej ;)...doma</div>
+            <div class="event-text">center</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 6 - RIGHT/BOTTOM -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T6.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 08.10.25</div>
+            <div class="event-place">Pražakova ulica 18</div>
+            <div class="event-text">2 fav things ;)</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 7 - LEFT/TOP -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T7.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 10.11.25</div>
+            <div class="event-place">Terasa</div>
+            <div class="event-text">hot hot hot hot hot</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 8 - RIGHT/BOTTOM -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T8.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 30.10.25</div>
+            <div class="event-place">between yo legs</div>
+            <div class="event-text">cozyyyyy</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+
+      <!-- EVENT 9 - LEFT/TOP -->
+      <div class="timeline-event">
+        <div class="event-content" onclick="openModal(this)">
+          <div class="event-photo" style="background-image: url('images/T0.jpg')"></div>
+          <div class="event-description">
+            <div class="event-time">📅 10.12.25</div>
+            <div class="event-place">HOME</div>
+            <div class="event-text">HOME</div>
+          </div>
+        </div>
+        <div class="event-dot"></div>
+        <div class="event-spacer"></div>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <button class="back-button" onclick="window.location.href='love.html'">← Back to Game</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div id="eventModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalPhotoContainer" class="modal-photo"></div>
+    <div class="modal-description">
+      <div class="modal-time" id="modalTime"></div>
+      <div class="modal-place" id="modalPlace"></div>
+      <div class="modal-text" id="modalText"></div>
+    </div>
+  </div>
+</div><!-- MODAL -->
+<div id="eventModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="modalPhotoContainer" class="modal-photo"></div>
+    <div class="modal-description">
+      <div class="modal-time" id="modalTime"></div>
+      <div class="modal-place" id="modalPlace"></div>
+      <div class="modal-text" id="modalText"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function openModal(element) {
+    const photoStyle = element.querySelector('.event-photo').style.backgroundImage;
+    const time = element.querySelector('.event-time').textContent;
+    const place = element.querySelector('.event-place').textContent;
+    const text = element.querySelector('.event-text').textContent;
+
+    document.getElementById('modalPhotoContainer').style.backgroundImage = photoStyle;
+    document.getElementById('modalTime').textContent = time;
+    document.getElementById('modalPlace').textContent = place;
+    document.getElementById('modalText').textContent = text;
+    document.getElementById('eventModal').classList.add('active');
+  }
+
+  function closeModal() {
+    document.getElementById('eventModal').classList.remove('active');
+  }
+
+  // Close modal when clicking outside the content
+  document.getElementById('eventModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeModal();
+    }
+  });
+
+  // Close modal with Escape key
+  document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  });
+</script>
+
+</body>
+</html>

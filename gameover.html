@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Over 💔</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Times New Roman", serif;
+    background: radial-gradient(circle at top, #2b0008 0, #4b0014 40%, #000000 100%);
+    color: #ffe6f0;
+  }
+
+  .wrapper {
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 52px;
+    letter-spacing: 4px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 22px;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 10px 24px;
+    font-size: 18px;
+    border: 2px solid #c9184a;
+    background: #ffe6f0;
+    color: #c9184a;
+    cursor: pointer;
+  }
+
+  /* MOBILE RESPONSIVE */
+  @media (max-width: 768px) {
+    body {
+      height: auto;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 40px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 25px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 32px;
+      letter-spacing: 2px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+  }
+
+  /* TABLET LANDSCAPE */
+  @media (max-width: 1024px) and (orientation: landscape) {
+    body {
+      padding: 30px;
+    }
+
+    h1 {
+      font-size: 38px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 15px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="wrapper">
+    <h1>U LOST</h1>
+    <p>GAME OVER 💔</p>
+    <button onclick="window.location.href='index.html'">Try Again</button>
+  </div>
+</body>
+</html>
